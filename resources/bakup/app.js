@@ -18,7 +18,7 @@ var app = new Vue({
         contracted: true,
         modalOpen: false,
         headerImageStyle: {
-            'background-image': 'url(/images/header.jpg)'
+            'background-image': 'url(sample/header.jpg)'
         },
         amenities: sample.amenities,
         prices: sample.prices
