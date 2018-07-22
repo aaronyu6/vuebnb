@@ -1,5 +1,9 @@
 import Vue from 'vue';
 import sample from './data';
+import "core-js/fn/object/assign";
+if (typeof Object.assign != 'function') {
+// Polyfill to define Object.assign
+}
 
 function escapeKeyListener(evt) {
     if (evt.keyCode === 27 && app.modalOpen) {
@@ -7,22 +11,19 @@ function escapeKeyListener(evt) {
     }
 }
 
-
+let model = JSON.parse(window.vuebnb_listing_model);
 
 var app = new Vue({
     el: '#app',
-    data: {
-        title: sample.title,
-        address: sample.address,
-        about: sample.about,
+    data: Object.assign(sample,{
+
         contracted: true,
         modalOpen: false,
         headerImageStyle: {
             'background-image': 'url(/images/header.jpg)'
         },
-        amenities: sample.amenities,
-        prices: sample.prices
-    },
+
+    }),
     watch: {
         modalOpen: function() {
             var className = 'modal-open';
@@ -37,4 +38,5 @@ var app = new Vue({
         document.addEventListener('keyup', escapeKeyListener);
     }
 });
+
 
